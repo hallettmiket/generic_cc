@@ -20,9 +20,17 @@ The problem is that `~/.claude/` is machine-local — it's not version-controlle
 ## What's Included
 
 ### Agents (`agents/`)
-| Agent | Purpose |
-|-------|---------|
-| **Oracle** | Cross-project knowledge keeper. Remembers genes, findings, hypotheses, and experimental context. Query it to recall or cross-reference accumulated knowledge across all lab projects. |
+| Agent | Personality | Purpose |
+|-------|-------------|---------|
+| **Oracle** | Calm, wise | Cross-project knowledge keeper. Remembers genes, findings, hypotheses, and experimental context. Query it to recall or cross-reference accumulated knowledge. |
+| **Blacksmith** | Shoresy (Northern Ontario) | Computational workhorse. Data loading, feature engineering, model training, Streamlit GUIs. Always the first agent invoked for analysis work. |
+| **Artist** | Florid, poetic | Visualization specialist. Publication-quality figures, PowerPoint presentations, HTML gallery exhibitions. |
+| **Adversary** | Passive-aggressive perfectionist | Scientific skeptic and auditor. Data leakage checks, cross-validation, methodology challenges. Runs after the blacksmith. |
+| **Bookworm** | Wholesome, organized | Literature and database specialist. Paper summaries, database queries, Zotero integration, Slack reporting. |
+
+These are **generic** versions of the agents. Project-specific repos can override any agent by placing a customized `.claude/agents/<name>.md` in the project — the project-level version takes priority over the global one.
+
+**Bookworm Zotero tagging**: The bookworm auto-detects the current repo name for Zotero tags. If a project-level bookworm defines a custom `zotero_tag`, that is used. Otherwise it falls back to the git repo name, then to `claude_code`.
 
 ### Rules (`rules/`)
 | Rule | Purpose |
