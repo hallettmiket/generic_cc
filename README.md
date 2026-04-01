@@ -162,6 +162,60 @@ git pull
 ./scripts/setup.sh   # Creates symlinks for new files only
 ```
 
+## Agent Monitor (`start_agents.sh`)
+
+The `scripts/start_agents.sh` script opens a multi-pane display for monitoring all 5 agents in real time:
+
+```
+┌──────────────────────┬──────────────────┐
+│                      │ ⚒  BLACKSMITH    │
+│                      ├──────────────────┤
+│                      │ 📚  BOOKWORM     │
+│   VSCode             ├──────────────────┤
+│   (Conductor)        │ 🎨  ARTIST       │
+│                      ├──────────────────┤
+│                      │ ⚔  ADVERSARY     │
+│                      ├──────────────────┤
+│                      │ 🔮  ORACLE       │
+└──────────────────────┴──────────────────┘
+```
+
+- **Left**: VSCode with Claude Code extension (the conductor pane)
+- **Right**: 5 iTerm2 windows, each tailing an agent's `progress.log` in the agent's color
+
+### Usage
+
+```bash
+# Run from within any project directory:
+~/repos/generic_cc/scripts/start_agents.sh
+
+# Or specify a project directory explicitly:
+~/repos/generic_cc/scripts/start_agents.sh ~/repos/my_project
+```
+
+The script will:
+1. Open VSCode on the project directory
+2. Create `outputs/{blacksmith,bookworm,artist,adversary,oracle}/` and empty `progress.log` files
+3. Open 5 color-coded iTerm2 windows, each tailing the corresponding log
+
+As agents work and write to their `progress.log`, updates appear in real time in the corresponding pane.
+
+### Display configuration
+
+The script assumes an external display at specific coordinates. Edit the `DISPLAY_*` variables at the top of the script to match your monitor setup:
+
+```bash
+DISPLAY_X=-92
+DISPLAY_Y=-1080
+DISPLAY_WIDTH=1920
+DISPLAY_HEIGHT=1080
+```
+
+### Requirements
+
+- macOS with iTerm2 and VSCode installed
+- An external display (or adjust coordinates for a single-monitor layout)
+
 ## Adding New Agents or Rules
 
 1. Create the `.md` file in `agents/` or `rules/`
