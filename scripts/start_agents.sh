@@ -3,7 +3,7 @@
 #
 # Opens a multi-pane layout for Claude Code agent monitoring:
 #   Left ~52%:  VSCode with Claude Code extension (Conductor)
-#   Right ~48%: 5 iTerm2 windows (Blacksmith, Bookworm, Artist, Adversary, Oracle)
+#   Right ~48%: 6 iTerm2 windows (Blacksmith, Bookworm, Artist, Adversary, Oracle, Conscience)
 #              stacked vertically, each tailing its progress.log
 #
 # Usage:
@@ -47,21 +47,22 @@ VSCODE_TOP=$(( DISPLAY_Y + MENU_BAR ))
 VSCODE_RIGHT=$(( DISPLAY_X + 990 ))
 VSCODE_BOTTOM=$(( DISPLAY_Y + DISPLAY_HEIGHT ))
 
-# Agent windows: right side, stacked vertically (5 rows)
+# Agent windows: right side, stacked vertically (6 rows)
 AGENT_LEFT=$(( DISPLAY_X + 993 ))
 AGENT_RIGHT=$(( DISPLAY_X + 993 + 888 ))
 AGENT_TOP=$(( DISPLAY_Y + MENU_BAR ))
 AGENT_BOTTOM=$(( DISPLAY_Y + DISPLAY_HEIGHT ))
 USABLE_HEIGHT=$(( AGENT_BOTTOM - AGENT_TOP ))
 AGENT_ROW1_TOP=$AGENT_TOP
-AGENT_ROW2_TOP=$(( AGENT_TOP + USABLE_HEIGHT / 5 ))
-AGENT_ROW3_TOP=$(( AGENT_TOP + USABLE_HEIGHT * 2 / 5 ))
-AGENT_ROW4_TOP=$(( AGENT_TOP + USABLE_HEIGHT * 3 / 5 ))
-AGENT_ROW5_TOP=$(( AGENT_TOP + USABLE_HEIGHT * 4 / 5 ))
+AGENT_ROW2_TOP=$(( AGENT_TOP + USABLE_HEIGHT / 6 ))
+AGENT_ROW3_TOP=$(( AGENT_TOP + USABLE_HEIGHT * 2 / 6 ))
+AGENT_ROW4_TOP=$(( AGENT_TOP + USABLE_HEIGHT * 3 / 6 ))
+AGENT_ROW5_TOP=$(( AGENT_TOP + USABLE_HEIGHT * 4 / 6 ))
+AGENT_ROW6_TOP=$(( AGENT_TOP + USABLE_HEIGHT * 5 / 6 ))
 
 # ── Create output directories and empty log files ───────────────────────────
-mkdir -p "$PROJECT_DIR/outputs"/{blacksmith,bookworm,artist,adversary,oracle}
-touch "$PROJECT_DIR/outputs"/{blacksmith,bookworm,artist,adversary,oracle}/progress.log
+mkdir -p "$PROJECT_DIR/outputs"/{blacksmith,bookworm,artist,adversary,oracle,conscience}
+touch "$PROJECT_DIR/outputs"/{blacksmith,bookworm,artist,adversary,oracle,conscience}/progress.log
 
 # ── 1. Open VSCode as the Conductor ─────────────────────────────────────────
 "$CODE" "$PROJECT_DIR" &
@@ -103,7 +104,7 @@ open_agent_window() {
   end tell"
 }
 
-# ── 3. Open 5 agent windows stacked vertically ──────────────────────────────
+# ── 3. Open 6 agent windows stacked vertically ──────────────────────────────
 # Row 1: Blacksmith (green)
 open_agent_window "⚒  BLACKSMITH" \
   $AGENT_LEFT $AGENT_ROW1_TOP $AGENT_RIGHT $AGENT_ROW2_TOP \
@@ -130,12 +131,18 @@ sleep 0.5
 
 # Row 5: Oracle (cyan)
 open_agent_window "🔮  ORACLE" \
-  $AGENT_LEFT $AGENT_ROW5_TOP $AGENT_RIGHT $AGENT_BOTTOM \
+  $AGENT_LEFT $AGENT_ROW5_TOP $AGENT_RIGHT $AGENT_ROW6_TOP \
   "36" "$PROJECT_DIR/outputs/oracle/progress.log"
+sleep 0.5
+
+# Row 6: Conscience (purple)
+open_agent_window "⚖  CONSCIENCE" \
+  $AGENT_LEFT $AGENT_ROW6_TOP $AGENT_RIGHT $AGENT_BOTTOM \
+  "35" "$PROJECT_DIR/outputs/conscience/progress.log"
 
 echo ""
 echo "Agent monitor ready for $PROJECT_NAME."
 echo "  Left:  VSCode (Conductor)"
-echo "  Right: Blacksmith | Bookworm | Artist | Adversary | Oracle"
+echo "  Right: Blacksmith | Bookworm | Artist | Adversary | Oracle | Conscience"
 echo ""
 echo "Each pane tails its agent's progress.log in real time."

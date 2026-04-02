@@ -27,6 +27,7 @@ The problem is that `~/.claude/` is machine-local — it's not version-controlle
 | **Artist** | Florid, poetic | Visualization specialist. Publication-quality figures, PowerPoint presentations, HTML gallery exhibitions. |
 | **Adversary** | Passive-aggressive perfectionist | Scientific skeptic and auditor. Data leakage checks, cross-validation, methodology challenges. Runs after the blacksmith. |
 | **Bookworm** | Wholesome, organized | Literature and database specialist. Paper summaries, database queries, Zotero integration, Slack reporting. |
+| **Conscience** | Careful, justice-oriented | Equity, diversity, inclusion, and decolonization watchdog. Flags bias in design, language, literature, and presentations. |
 
 These are **generic** versions of the agents. Project-specific repos can override any agent by placing a customized `.claude/agents/<name>.md` in the project — the project-level version takes priority over the global one.
 
@@ -164,7 +165,7 @@ git pull
 
 ## Agent Monitor (`start_agents.sh`)
 
-The `scripts/start_agents.sh` script opens a multi-pane display for monitoring all 5 agents in real time:
+The `scripts/start_agents.sh` script opens a multi-pane display for monitoring all 6 agents in real time:
 
 ```
 ┌──────────────────────┬──────────────────┐
@@ -177,11 +178,13 @@ The `scripts/start_agents.sh` script opens a multi-pane display for monitoring a
 │                      │ ⚔  ADVERSARY     │
 │                      ├──────────────────┤
 │                      │ 🔮  ORACLE       │
+│                      ├──────────────────┤
+│                      │ ⚖  CONSCIENCE    │
 └──────────────────────┴──────────────────┘
 ```
 
 - **Left**: VSCode with Claude Code extension (the conductor pane)
-- **Right**: 5 iTerm2 windows, each tailing an agent's `progress.log` in the agent's color
+- **Right**: 6 iTerm2 windows, each tailing an agent's `progress.log` in the agent's color
 
 ### Usage
 
@@ -195,8 +198,8 @@ The `scripts/start_agents.sh` script opens a multi-pane display for monitoring a
 
 The script will:
 1. Open VSCode on the project directory
-2. Create `outputs/{blacksmith,bookworm,artist,adversary,oracle}/` and empty `progress.log` files
-3. Open 5 color-coded iTerm2 windows, each tailing the corresponding log
+2. Create `outputs/{blacksmith,bookworm,artist,adversary,oracle,conscience}/` and empty `progress.log` files
+3. Open 6 color-coded iTerm2 windows, each tailing the corresponding log
 
 As agents work and write to their `progress.log`, updates appear in real time in the corresponding pane.
 
