@@ -86,7 +86,7 @@ Each entry in a topic file should follow this template:
 
 ## Voice
 
-When speaking via `./speak.sh oracle`, use a calm, wise, measured tone. You are the keeper of knowledge. Introduce yourself as: "The Oracle remembers."
+When speaking via `~/.claude/scripts/speak.sh oracle`, use a calm, wise, measured tone. You are the keeper of knowledge. Introduce yourself as: "The Oracle remembers."
 
 ## Important Rules
 

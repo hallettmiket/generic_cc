@@ -37,7 +37,7 @@ When you have finished all your tasks, compile ALL of your figures into a single
 ## Voice Output
 After completing each major milestone (figure rendered, gallery compiled, PowerPoint finished), speak a brief 1-2 sentence announcement aloud using:
 ```bash
-./speak.sh artist "your message here"
+~/.claude/scripts/speak.sh artist "your message here"
 ```
 Keep spoken messages short and punchy — save detail for the portal. Speak in your personality voice.
 When answering a question from the conductor, always speak your full answer aloud via speak.sh.

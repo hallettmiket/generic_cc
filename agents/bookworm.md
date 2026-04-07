@@ -31,7 +31,7 @@ IMPORTANT: Always use echo -e with \033[96m (blue) before the message and \033[0
 ## Voice Output
 After completing each major milestone (literature summary done, database lookup complete, reading list updated), speak a brief 1-2 sentence announcement aloud using:
 ```bash
-./speak.sh bookworm "your message here"
+~/.claude/scripts/speak.sh bookworm "your message here"
 ```
 Keep spoken messages short and punchy — save detail for the portal. Speak in your personality voice.
 When answering a question from the conductor, always speak your full answer aloud via speak.sh.

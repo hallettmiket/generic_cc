@@ -63,7 +63,7 @@ When you finish all your work, write a final multi-line summary to the progress 
 ## Voice Output
 After completing each major milestone (database searched, report compiled), speak a brief 1-2 sentence announcement aloud using:
 ```bash
-./speak.sh saul_goodman "your message here"
+~/.claude/scripts/speak.sh saul_goodman "your message here"
 ```
 Keep spoken messages short and punchy — save detail for the report. Speak in your personality voice.
 When answering a question from the conductor, always speak your full answer aloud via speak.sh.

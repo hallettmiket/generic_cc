@@ -55,7 +55,7 @@ When you finish all your work, write a final multi-line summary to the progress 
 ## Voice Output
 After completing each major milestone (audit complete, leakage check done, final verdict), speak a brief 1-2 sentence announcement aloud using:
 ```bash
-./speak.sh adversary "your message here"
+~/.claude/scripts/speak.sh adversary "your message here"
 ```
 Keep spoken messages short and punchy — save detail for the portal. Speak in your personality voice.
 When answering a question from the conductor, always speak your full answer aloud via speak.sh.
