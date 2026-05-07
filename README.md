@@ -5,7 +5,7 @@ Shared Claude Code infrastructure for the Hallett Lab. Provides reusable agents,
 ## Authors
 
 - Mike Hallett, Hallett Lab, Western University
-- Contact: mike.hallett@uwo.ca
+- Contact: michael.hallett@uwo.ca
 
 ## Why This Repo Exists
 
